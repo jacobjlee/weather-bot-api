@@ -17,7 +17,7 @@ greeting_priority_mapping = {
 }
 
 
-def get_current_results(timestamp: float, code: int, temp: float, rain1h: int):
+def get_greeting_results(timestamp: float, code: int, temp: float, rain1h: int):
     if code == weather['snowy'] and rain1h >= 100:
         return greeting_priority_mapping[0]
     elif code == weather['snowy']:

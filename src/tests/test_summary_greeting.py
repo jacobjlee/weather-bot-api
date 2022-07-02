@@ -2,7 +2,7 @@ import random
 
 from fastapi.testclient import TestClient
 
-from api.summary.helpers import get_current_results
+from api.summary.helpers import get_greeting_results
 from main import app
 
 client = TestClient(app)
@@ -17,7 +17,7 @@ def test_summary_greeting_priority_0():
     params: dict = dict(timestamp=timestamp, code=3, temp=temp, rain1h=rain1h)
 
     # when
-    results: str = get_current_results(**params)
+    results: str = get_greeting_results(**params)
 
     # then
     assert results
@@ -29,7 +29,7 @@ def test_summary_greeting_priority_1():
     params: dict = dict(timestamp=timestamp, code=3, temp=temp, rain1h=random.randrange(1, 99))
 
     # when
-    results: str = get_current_results(**params)
+    results: str = get_greeting_results(**params)
 
     # then
     assert results
@@ -41,7 +41,7 @@ def test_summary_greeting_priority_2():
     params: dict = dict(timestamp=timestamp, code=2, temp=temp, rain1h=rain1h)
 
     # when
-    results: str = get_current_results(**params)
+    results: str = get_greeting_results(**params)
 
     # then
     assert results
@@ -53,7 +53,7 @@ def test_summary_greeting_priority_3():
     params: dict = dict(timestamp=timestamp, code=2, temp=temp, rain1h=random.randrange(1, 99))
 
     # when
-    results: str = get_current_results(**params)
+    results: str = get_greeting_results(**params)
 
     # then
     assert results
@@ -65,7 +65,7 @@ def test_summary_greeting_priority_4():
     params: dict = dict(timestamp=timestamp, code=1, temp=temp, rain1h=rain1h)
 
     # when
-    results: str = get_current_results(**params)
+    results: str = get_greeting_results(**params)
 
     # then
     assert results
@@ -77,7 +77,7 @@ def test_summary_greeting_priority_5():
     params: dict = dict(timestamp=timestamp, code=0, temp=random.uniform(30, 40), rain1h=rain1h)
 
     # when
-    results: str = get_current_results(**params)
+    results: str = get_greeting_results(**params)
 
     # then
     assert results
@@ -89,7 +89,7 @@ def test_summary_greeting_priority_6():
     params: dict = dict(timestamp=timestamp, code=0, temp=random.uniform(-20, 0), rain1h=rain1h)
 
     # when
-    results: str = get_current_results(**params)
+    results: str = get_greeting_results(**params)
 
     # then
     assert results
@@ -101,7 +101,7 @@ def test_summary_greeting_priority_7():
     params: dict = dict(timestamp=timestamp, code=0, temp=temp, rain1h=rain1h)
 
     # when
-    results: str = get_current_results(**params)
+    results: str = get_greeting_results(**params)
 
     # then
     assert results
