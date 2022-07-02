@@ -7,8 +7,7 @@ async def get_current_info(lat: float, lon: float):
     async with AsyncClient() as client:
         params: dict = dict(lat=lat, lon=lon, api_key=settings.EXTERNAL_WEATHER_API_KEY)
         resp: Response = await client.get(settings.EXTERNAL_WEATHER_CURRENT_URL, params=params)
-        results = resp.json()
-        return results
+        return resp.json()
 
 
 async def get_forecast_info(lat: float, lon: float, hour_offset: int):
