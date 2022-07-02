@@ -34,3 +34,20 @@ def get_greeting_results(timestamp: float, code: int, temp: float, rain1h: int):
         return greeting_priority_mapping[6]
     else:
         return greeting_priority_mapping[7]
+
+
+def get_temperature_results(current_temp: int, temp_24_hours_ago: int, max_temp: int, min_temp: int):
+    max_min_sentence = f"최고기온은 {max_temp}도, 최저기온은 {min_temp}도 입니다."
+
+    if temp_24_hours_ago > current_temp >= 15:
+        return f"어제보다 {temp_24_hours_ago - current_temp}도 덜 덥습니다." + " " + max_min_sentence
+    elif temp_24_hours_ago > current_temp < 15:
+        return f"어제보다 {temp_24_hours_ago - current_temp}도 더 춥습니다." + " " + max_min_sentence
+    elif temp_24_hours_ago < current_temp >= 15:
+        return f"어제보다 {current_temp - temp_24_hours_ago}도 더 덥습니다." + " " + max_min_sentence
+    elif temp_24_hours_ago < current_temp < 15:
+        return f"어제보다 {current_temp - temp_24_hours_ago}도 덜 춥습니다." + " " + max_min_sentence
+    elif current_temp == temp_24_hours_ago and current_temp >= 15:
+        return f"어제와 비슷하게 덥습니다." + " " + max_min_sentence
+    elif current_temp == temp_24_hours_ago and current_temp < 15:
+        return f"어제와 비슷하게 춥습니다." + " " + max_min_sentence
