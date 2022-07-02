@@ -1,6 +1,6 @@
 from httpx import AsyncClient, Response
 
-from src.config import settings
+from config import settings
 
 
 async def get_current_info(lat: float, lon: float):
