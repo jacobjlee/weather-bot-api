@@ -1,11 +1,15 @@
+import json
+
 from fastapi import APIRouter, Query
 
+from api.summary.external_api import get_current_info, get_forecast_info, get_historical_info
+from api.summary.helpers import get_greeting_results, get_temperature_results
 from schemas.summary import SummaryResponse
 
-from api.summary.external_api import get_current_info,  get_forecast_info, get_historical_info
-from api.summary.helpers import get_current_results
 
 router = APIRouter()
+
+HISTORICAL_HOURS = [-6, -12, -18, -24]
 
 
 @router.get("/summary", response_model=SummaryResponse, tags=['summary'])
@@ -21,8 +25,21 @@ async def summary(
         description="Longitude should be greater than or equal to -180 and less than or equal to 180.",
     )
 ):
-    greeting_response = await get_current_info(lat=lat, lon=lon)
-    greeting_results = get_current_results(**greeting_response)
+    greeting_response: json = await get_current_info(lat=lat, lon=lon)
+    greeting_results: str = get_greeting_results(**greeting_response)
 
-    results = dict(greeting=greeting_results, temperature='1', heads_up='1')
+    current_temp: int = int(greeting_response['temp'])
+    total_temp_list: list = []
+    for hour in HISTORICAL_HOURS:
+        resp: json = await get_historical_info(lat=lat, lon=lon, hour_offset=hour)
+        total_temp_list.append(resp['temp'])
+
+    temperature_results: str = get_temperature_results(
+        current_temp=current_temp,
+        temp_24_hours_ago=int(total_temp_list[-1]),
+        max_temp=int(max(total_temp_list)),
+        min_temp=int(min(total_temp_list)),
+    )
+
+    results = dict(summary=dict(greeting=greeting_results, temperature=temperature_results, heads_up='1'))
     return results
