@@ -6,7 +6,6 @@ from fastapi.testclient import TestClient
 
 from main import app
 
-
 client = TestClient(app)
 
 
@@ -81,4 +80,3 @@ def test_summary_invalid_lon_parameter():
     response: Response = client.get("/summary", params=params)
     # then
     assert response.status_code == 422
-

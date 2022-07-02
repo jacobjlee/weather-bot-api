@@ -4,7 +4,7 @@ import random
 import pytest
 from httpx import AsyncClient
 
-from api import get_current_info,  get_forecast_info, get_historical_info
+from api.summary.external_api import get_current_info,  get_forecast_info, get_historical_info
 
 MIN_LAT: float = -90
 MAX_LAT: float = 90

@@ -1,8 +1,8 @@
 from fastapi import FastAPI
 
-from api import summary
+from api.summary import summary_api
 
 app = FastAPI()
 
 
-app.include_router(summary.router)
+app.include_router(summary_api.router)
