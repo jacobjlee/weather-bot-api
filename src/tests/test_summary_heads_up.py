@@ -9,6 +9,8 @@ client: TestClient = TestClient(app)
 
 
 def test_summary_headsup_priority_0():
+    """Test get expected message for the first priority."""
+
     # given
     params: list = [
         dict(code=3, rain=random.randrange(1, 10)) for _ in range(8)
@@ -23,6 +25,8 @@ def test_summary_headsup_priority_0():
 
 
 def test_summary_headsup_priority_1():
+    """Test get expected message for the second priority."""
+
     # given
     params: list = [
         dict(code=3, rain=0) for _ in range(4)
@@ -39,6 +43,8 @@ def test_summary_headsup_priority_1():
 
 
 def test_summary_headsup_priority_2():
+    """Test get expected message for the third priority."""
+
     # given
     params: list = [
         dict(code=2, rain=random.randrange(1, 10)) for _ in range(8)
@@ -53,6 +59,8 @@ def test_summary_headsup_priority_2():
 
 
 def test_summary_headsup_priority_3():
+    """Test get expected message for the fourth priority."""
+
     # given
     params: list = [
         dict(code=2, rain=0) for _ in range(4)
@@ -69,6 +77,8 @@ def test_summary_headsup_priority_3():
 
 
 def test_summary_headsup_priority_4():
+    """Test get expected message for the fifth priority."""
+
     # given
     params: list = [
         dict(code=1, rain=0) for _ in range(8)

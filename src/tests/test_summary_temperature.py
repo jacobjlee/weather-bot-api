@@ -13,6 +13,8 @@ min_temp: int = -5
 
 
 def test_summary_temperature_temp_down_and_current_temp_greater_equal_15():
+    """Test get expected message when temp went down and current temp is greater or equal to 15."""
+
     # given
     current_temp: int = random.randint(10, 15)
     temp_24_hours_ago: int = random.randint(16, 20)
@@ -29,6 +31,8 @@ def test_summary_temperature_temp_down_and_current_temp_greater_equal_15():
 
 
 def test_summary_temperature_temp_down_and_current_temp_under_15():
+    """Test get expected message when temp went down and current temp is under 15."""
+
     # given
     current_temp: int = random.randint(10, 14)
     temp_24_hours_ago: int = random.randint(15, 20)
@@ -45,6 +49,8 @@ def test_summary_temperature_temp_down_and_current_temp_under_15():
 
 
 def test_summary_temperature_temp_up_and_current_temp_greater_equal_15():
+    """Test get expected message when temp went up and current temp is greater or equal to 15."""
+
     # given
     current_temp: int = random.randint(15, 20)
     temp_24_hours_ago: int = random.randint(10, 14)
@@ -61,6 +67,8 @@ def test_summary_temperature_temp_up_and_current_temp_greater_equal_15():
 
 
 def test_summary_temperature_temp_up_and_current_temp_under_15():
+    """Test get expected message when temp went up and current temp is under 15."""
+
     # given
     current_temp: int = random.randint(10, 14)
     temp_24_hours_ago: int = random.randint(5, 9)
@@ -77,6 +85,8 @@ def test_summary_temperature_temp_up_and_current_temp_under_15():
 
 
 def test_summary_temperature_temp_same_and_current_temp_greater_equal_15():
+    """Test get expected message when temps are same and current temp is greater or equal to 15."""
+
     # given
     current_temp: int = random.randint(15, 20)
     temp_24_hours_ago: current_temp = current_temp
@@ -93,6 +103,8 @@ def test_summary_temperature_temp_same_and_current_temp_greater_equal_15():
 
 
 def test_summary_temperature_temp_same_and_current_temp_under_15():
+    """Test get expected message when temps are same and current temp is under 15."""
+
     # given
     current_temp: int = random.randint(10, 14)
     temp_24_hours_ago: current_temp = current_temp

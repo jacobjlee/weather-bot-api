@@ -13,6 +13,8 @@ rain1h = random.randrange(100, 200)
 
 
 def test_summary_greeting_priority_0():
+    """Test get expected message for the first priority."""
+
     # given
     params: dict = dict(timestamp=timestamp, code=3, temp=temp, rain1h=rain1h)
 
@@ -25,6 +27,8 @@ def test_summary_greeting_priority_0():
 
 
 def test_summary_greeting_priority_1():
+    """Test get expected message for the second priority."""
+
     # given
     params: dict = dict(timestamp=timestamp, code=3, temp=temp, rain1h=random.randrange(1, 99))
 
@@ -37,6 +41,8 @@ def test_summary_greeting_priority_1():
 
 
 def test_summary_greeting_priority_2():
+    """Test get expected message for the third priority."""
+
     # given
     params: dict = dict(timestamp=timestamp, code=2, temp=temp, rain1h=rain1h)
 
@@ -49,6 +55,8 @@ def test_summary_greeting_priority_2():
 
 
 def test_summary_greeting_priority_3():
+    """Test get expected message for the fourth priority."""
+
     # given
     params: dict = dict(timestamp=timestamp, code=2, temp=temp, rain1h=random.randrange(1, 99))
 
@@ -61,6 +69,8 @@ def test_summary_greeting_priority_3():
 
 
 def test_summary_greeting_priority_4():
+    """Test get expected message for the fifth priority."""
+
     # given
     params: dict = dict(timestamp=timestamp, code=1, temp=temp, rain1h=rain1h)
 
@@ -73,6 +83,8 @@ def test_summary_greeting_priority_4():
 
 
 def test_summary_greeting_priority_5():
+    """Test get expected message for the sixth priority."""
+
     # given
     params: dict = dict(timestamp=timestamp, code=0, temp=random.uniform(30, 40), rain1h=rain1h)
 
@@ -85,6 +97,8 @@ def test_summary_greeting_priority_5():
 
 
 def test_summary_greeting_priority_6():
+    """Test get expected message for the seventh priority."""
+
     # given
     params: dict = dict(timestamp=timestamp, code=0, temp=random.uniform(-20, 0), rain1h=rain1h)
 
@@ -97,6 +111,8 @@ def test_summary_greeting_priority_6():
 
 
 def test_summary_greeting_priority_7():
+    """Test get expected message for the eighth priority."""
+
     # given
     params: dict = dict(timestamp=timestamp, code=0, temp=temp, rain1h=rain1h)
 
