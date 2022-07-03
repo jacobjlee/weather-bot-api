@@ -3,13 +3,14 @@ import json
 from fastapi import APIRouter, Query
 
 from api.summary.external_api import get_current_info, get_forecast_info, get_historical_info
-from api.summary.helpers import get_greeting_results, get_temperature_results
+from api.summary.helpers import get_greeting_results, get_heads_up_results, get_temperature_results
 from schemas.summary import SummaryResponse
 
 
 router = APIRouter()
 
 HISTORICAL_HOURS = [-6, -12, -18, -24]
+FORECAST_HOURS = [6, 12, 18, 24, 30, 36, 42, 48]
 
 
 @router.get("/summary", response_model=SummaryResponse, tags=['summary'])
@@ -41,5 +42,12 @@ async def summary(
         min_temp=int(min(total_temp_list)),
     )
 
-    results = dict(summary=dict(greeting=greeting_results, temperature=temperature_results, heads_up='1'))
+    forecast_code_rain_list: list = []
+    for hour in FORECAST_HOURS:
+        resp: json = await get_forecast_info(lat=lat, lon=lon, hour_offset=hour)
+        forecast_code_rain_list.append(dict(code=resp['code'], rain=[resp['rain']]))
+
+    heads_up_results: str = get_heads_up_results(forecast_code_rain_list)
+
+    results = dict(summary=dict(greeting=greeting_results, temperature=temperature_results, heads_up=heads_up_results))
     return results
