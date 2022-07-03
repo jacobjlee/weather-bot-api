@@ -80,3 +80,19 @@ def test_summary_invalid_lon_parameter():
     response: Response = client.get("/summary", params=params)
     # then
     assert response.status_code == 422
+
+
+def test_summary_response():
+    # given
+    params: dict = dict(lat=random.uniform(-90, 90), lon=random.uniform(-180, 180))
+
+    # when
+    response: Response = client.get("/summary", params=params)
+    results: json = response.json()
+
+    # then
+    assert response.status_code == 200
+    assert results['summary']
+    assert results['summary']['greeting']
+    assert results['summary']['temperature']
+    assert results['summary']['heads_up']
